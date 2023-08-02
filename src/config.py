@@ -2,7 +2,10 @@ from configparser import ConfigParser
 import os
 
 
-def config(filename="database.ini", section="postgresql"):
+def config(filename="database.ini", section="postgresql") -> dict:
+    """
+    Конвертирует раздел ini файла в словарь
+    """
     # create a parser
     file = os.path.join(os.path.dirname(__file__), filename)
     parser = ConfigParser()

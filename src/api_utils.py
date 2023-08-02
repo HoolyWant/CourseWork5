@@ -4,13 +4,22 @@ from json import loads
 
 
 class HHEmployers:
+    """
+    Класс для работы с API hh.ru
+    Хранящий в своих атрибутах информацию
+    о работадателях и их вакансиях
+    """
     employers_info = []
     vacancies_info = []
 
     def __init__(self, employer_ids_list):
         self.employer_ids_list = employer_ids_list
 
-    def get_hh_employers(self):
+    def get_hh_employers(self) -> None:
+        """
+        Парсит данные о работадателях
+        и сохраняет в список employers_info
+        """
         for employer_id in self.employer_ids_list:
             json_response = get(f'https://api.hh.ru/employers/{employer_id}').text
             response = loads(json_response)
@@ -29,12 +38,22 @@ class HHEmployers:
             self.employers_info.append(employer_info)
 
     @staticmethod
-    def cleanhtml(string):
+    def cleanhtml(string: str) -> str:
+        """
+        Статический метод для очистки описаний
+        работадателей и не только от html-тегов
+        :param string:
+        :return cleantext:
+        """
         CLEANR = re.compile('<.*?>')
         cleantext = re.sub(CLEANR, '', string)
         return cleantext
 
     def get_vacancies(self):
+        """
+        Парсит данные о вакансиях работадателей
+        и сохраняет в список vacancies_info
+        """
         for item in self.employers_info:
             json_response = get(item['vacancies_url']).text
             vacancies = loads(json_response)['items']

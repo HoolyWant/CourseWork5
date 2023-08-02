@@ -5,8 +5,11 @@ from src.DBManager import DBManager
 from src.config import config
 from src import bd_utils
 
+"""
+Файл демонстрирует работу программы
+"""
 
-employers_id_list = ['733', '5178281', '5843588', '4917',
+employers_id_list = ['733', '5178281', '5843588', '4917', # Список id работадателей
                      '2650528', '4082', '675403',
                      '3672566', '2696688', '4569685']
 
