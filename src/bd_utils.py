@@ -31,7 +31,7 @@ def create_database(database_name: str, params: dict) -> None:
                 CREATE TABLE vacancies (
                         vacancy_id serial PRIMARY KEY,
                         vacancy_name varchar(100) NOT NULL,
-                        salary varchar(100) NOT NULL,
+                        salary INT,
                         vacancy_url varchar(100) NOT NULL,
                         employer_name varchar(100) REFERENCES employers(employer_name)
                 )
