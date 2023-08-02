@@ -47,17 +47,14 @@ class HHEmployers:
                 try:
                     pay_from = str(vacancy['salary']['from'])
                     pay_to = str(vacancy['salary']['to'])
-                    pay_cur = str(vacancy['salary']['currency'])
                     if pay_to == 'None':
-                        salary = 'От' + pay_from + ' ' + pay_cur
+                        salary = pay_from
                     elif pay_from == 'None':
-                        salary = 'До ' + pay_to + ' ' + pay_cur
+                        salary = pay_to
                     else:
-                        salary = 'От ' + pay_from + \
-                                 ' до ' + pay_to + \
-                                 ' ' + pay_cur
+                        salary = pay_to
                 except TypeError:
-                    salary = 'Зарплата не указана'
+                    salary = None
                 clear_dict['salary'] = salary
                 item_list.append(clear_dict)
             vacancy_dict = {item['name']: item_list}
