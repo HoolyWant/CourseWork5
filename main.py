@@ -1,4 +1,4 @@
-from pprint import pprint
+# from pprint import pprint
 
 from src.api_utils import HHEmployers
 from src.DBManager import DBManager
@@ -22,3 +22,10 @@ params = config('database.ini', 'postgresql')
 bd_utils.create_database('hh_employers', params)
 bd_utils.fill_employer_table('hh_employers', params, employers)
 bd_utils.fill_vacancy_table('hh_employers', params, vacancies)
+
+dbmanager = DBManager('hh_employers', params)
+dbmanager.get_companies_and_vacancies_count()
+dbmanager.get_all_vacancies()
+dbmanager.get_avg_salary()
+dbmanager.get_vacancies_with_higher_salary()
+dbmanager.get_vacancies_with_keyword()
