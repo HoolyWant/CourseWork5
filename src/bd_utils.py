@@ -74,10 +74,6 @@ def fill_vacancy_table(database_name: str, params: dict, data: list[dict[str, an
     with conn.cursor() as cur:
         for item in data:
             for key, value in item.items():
-                # cur.execute('''
-                #             INSERT INTO vacancies (employer_name)
-                #             VALUES (%s)
-                #             ''', key)
                 for vacancy in value:
                     cur.execute(
                             '''
