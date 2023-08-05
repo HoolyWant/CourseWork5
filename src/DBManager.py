@@ -85,18 +85,19 @@ class DBManager:
         переданные в метод слова.
         """
         conn = psycopg2.connect(dbname=self.database_name, **self.params)
+        user_input = input('Введите значение, по которому вы '
+                           'хотите произвести поиск по вакансиям:\n')
         with conn.cursor() as cur:
             cur.execute(
-                '''
+                f'''
                 SELECT * FROM vacancies
-                '''
-            )
+                WHERE vacancy_name LIKE '%{user_input}%'
+                OR vacancy_name LIKE '{user_input}%'
+                OR vacancy_name LIKE '%{user_input}'
+                ''')
             rows = cur.fetchall()
-            user_input = input('Введите значение, по которому вы '
-                               'хотите произвести поиск по вакансиям:\n')
             for row in rows:
-                if user_input.lower() in row[1].lower():
-                    print(row)
+                print(row)
             print('\n')
         conn.close()
 
